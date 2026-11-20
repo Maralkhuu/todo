@@ -63,13 +63,14 @@ export default function HomePage() {
           <TaskFilters
             activeFilter={activeFilter}
             onFilterChange={setActiveFilter}
-            taskCount={tasks.length}
+            tasks={filteredTasks}
           />
 
           <TaskList
             tasks={filteredTasks}
             onToggle={toggleTask}
             onDelete={deleteTask}
+            hasTask = {tasks.length > 0}
           />
         </section>
       </div>

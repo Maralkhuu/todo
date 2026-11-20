@@ -2,17 +2,19 @@
 "use client";
 
 import type { TaskFilter } from "@/types";
+import type {Task} from "@/types"
+
 
 type TaskFiltersProps = {
   activeFilter: TaskFilter;
   onFilterChange: (filter: TaskFilter) => void;
-  taskCount: number;
+  tasks: Task[];
 };
 
 export default function TaskFilters({
   activeFilter,
   onFilterChange,
-  taskCount,
+  tasks
 }: TaskFiltersProps) {
   const filters: TaskFilter[] = ["All", "Active", "Completed"];
 
@@ -25,9 +27,9 @@ export default function TaskFilters({
             type="button"
             onClick={() => onFilterChange(filter)}
             aria-pressed={activeFilter === filter}
-            className={`relative cursor-pointer whitespace-nowrap pb-3 text-xs transition-all duration-200 active:scale-95 sm:text-sm ${
+            className={`relative cursor-pointer pb-3 text-xs sm:text-sm ${
               activeFilter === filter
-                ? "scale-[1.05] border-b-2 border-[#236B53] font-semibold text-[#236B53]"
+                ? "border-b-2 border-[#236B53] font-semibold text-[#236B53]"
                 : "text-[#93A198] hover:text-[#236B53]"
             }`}
           >
@@ -37,7 +39,7 @@ export default function TaskFilters({
       </div>
 
       <span className="flex h-[25px] min-w-[25px] items-center justify-center rounded-[6px] bg-[#EAF3ED] px-2 text-xs font-semibold text-[#236B53]">
-        {taskCount}
+        {tasks.length}
       </span>
     </div>
   );
